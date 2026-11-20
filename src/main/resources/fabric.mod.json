@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "toastcontrol",
+	"version": "${version}",
+	"name": "Toast Control",
+	"description": "Blocking annoying popups since 1.12",
+	"authors": [
+		"Shadows_of_Fire"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/CnOG2wlS"
+	},
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.shadowsoffire.toastcontrol.ToastControl"
+		]
+	},
+	"accessWidener": "toastcontrol.classtweaker",
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": ">=26.1 <26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
