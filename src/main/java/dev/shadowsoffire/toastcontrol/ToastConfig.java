@@ -32,9 +32,9 @@ public final class ToastConfig {
 
     // blocked_toasts
     /** If advancement toasts are blocked. */
-    public boolean advancements = true;
+    public boolean advancements = false;
     /** If recipe toasts are blocked. */
-    public boolean recipes = true;
+    public boolean recipes = false;
     /** If system toasts are blocked. */
     public boolean system = false;
     /** If tutorial toasts are blocked. */
@@ -169,8 +169,8 @@ public final class ToastConfig {
 
     private void read(JsonObject root) {
         JsonObject blocked = section(root, "blocked_toasts");
-        this.advancements = bool(blocked, "advancements", true);
-        this.recipes = bool(blocked, "recipes", true);
+        this.advancements = bool(blocked, "advancements", false);
+        this.recipes = bool(blocked, "recipes", false);
         this.system = bool(blocked, "system", false);
         this.tutorial = bool(blocked, "tutorial", true);
         this.globalVanilla = bool(blocked, "global_vanilla", false);

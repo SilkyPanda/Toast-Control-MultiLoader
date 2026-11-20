@@ -18,8 +18,8 @@ game is running.
 
 | Section | Option | Default | Meaning |
 |---|---|---|---|
-| `blocked_toasts` | `advancements`, `recipes`, `tutorial` | `true` | Block that toast type |
-| | `system` | `false` | Block system toasts |
+| `blocked_toasts` | `advancements`, `recipes`, `system` | `false` | Block that toast type |
+| | `tutorial` | `true` | Block tutorial toasts |
 | | `global_vanilla` / `global_modded` / `global` | `false` | Block all vanilla / all non-vanilla / all toasts |
 | | `blocked_classes` | `[]` | Fully qualified toast class names to block |
 | `visual_options` | `force_time` | `0` | Minimum time on screen in ticks (0 = vanilla) |
@@ -32,6 +32,13 @@ game is running.
 | `debug` | `print_classes` | `false` | Log the class of every toast shown |
 
 Press **J** (rebindable under Controls) to clear all active toasts.
+
+## Testing in a dev client
+
+* Recipe toasts merge into one toast, so use advancements to see several at once:
+  `/advancement grant @s from minecraft:story/root`
+* Reset with `/advancement revoke @s everything`.
+* The `flite` / narrator error on Linux is harmless and unrelated to this mod.
 
 ## Development
 

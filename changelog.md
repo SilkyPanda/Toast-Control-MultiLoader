@@ -2,6 +2,7 @@
 * Fabric port for Minecraft 26.1.x (client-side only, requires Fabric API).
 * Config is now `config/toastcontrol.json` (same options as the old NeoForge TOML) and reloads automatically when the file is saved.
 * The Placebo dependency was dropped.
+* Advancement and recipe toasts are no longer blocked by default.
 
 ## 10.0.0
 * Ported to Minecraft 26.1.2.
