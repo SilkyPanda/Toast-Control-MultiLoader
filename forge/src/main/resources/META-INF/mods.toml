@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[65,66)"
+loaderVersion="[62,65)"
 license="MIT"
 clientSideOnly=true
 accessTransformers=["META-INF/accesstransformer.cfg"]
@@ -15,13 +15,13 @@ description='''${description}'''
 [[dependencies.toastcontrol]]
     modId="forge"
     mandatory=true
-    versionRange="[65,66)"
+    versionRange="[62,65)"
     ordering="NONE"
     side="CLIENT"
 
 [[dependencies.toastcontrol]]
     modId="minecraft"
     mandatory=true
-    versionRange="[26.2,26.3)"
+    versionRange="[26.1,26.2)"
     ordering="NONE"
     side="CLIENT"

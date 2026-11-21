@@ -2,7 +2,7 @@
 
 Blocks and customises the toast popups Minecraft shows for advancements, recipes, tutorials and system messages. Client side only.
 
-Works on Minecraft 26.2.x with Fabric (needs Fabric API), NeoForge and Forge.
+Works on Minecraft 26.1.x with Fabric (needs Fabric API), NeoForge and Forge.
 
 Based on [Toast Control](https://modrinth.com/mod/toast-control) by Shadows-of-Fire.
 
