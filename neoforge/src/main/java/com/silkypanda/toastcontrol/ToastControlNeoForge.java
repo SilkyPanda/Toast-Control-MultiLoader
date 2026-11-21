@@ -1,6 +1,6 @@
 package com.silkypanda.toastcontrol;
 
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ import net.neoforged.neoforge.common.NeoForge;
 public class ToastControlNeoForge {
 
     public static final KeyMapping.Category CATEGORY = new KeyMapping.Category(Identifier.fromNamespaceAndPath(ToastControl.MODID, "category"));
-    public static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", GLFW.GLFW_KEY_J, CATEGORY);
+    public static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", InputConstants.KEY_J, CATEGORY);
 
     public ToastControlNeoForge(IEventBus bus, ModContainer container) {
         container.registerConfig(ModConfig.Type.CLIENT, NeoForgeConfig.SPEC);
