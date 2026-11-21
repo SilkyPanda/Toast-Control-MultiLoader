@@ -6,14 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        branch: ['26.1', '26.2', '26.3']
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ matrix.branch }}
       - uses: actions/setup-java@v4
         with:
           java-version: 25
@@ -22,7 +16,7 @@ jobs:
       - run: ./gradlew build
       - uses: actions/upload-artifact@v4
         with:
-          name: toastcontrol-${{ matrix.branch }}
+          name: toastcontrol-${{ github.ref_name }}
           path: |
             fabric/build/libs/*.jar
             neoforge/build/libs/*.jar
