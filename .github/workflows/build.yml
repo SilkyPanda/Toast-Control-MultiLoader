@@ -1,11 +1,19 @@
 name: build
-on: [pull_request, push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ['26.1', '26.2', '26.3']
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
       - uses: actions/setup-java@v4
         with:
           java-version: 25
@@ -14,8 +22,10 @@ jobs:
       - run: ./gradlew build
       - uses: actions/upload-artifact@v4
         with:
-          name: jars
+          name: toastcontrol-${{ matrix.branch }}
           path: |
-            fabric/build/libs/
-            neoforge/build/libs/
-            forge/build/libs/
+            fabric/build/libs/*.jar
+            neoforge/build/libs/*.jar
+            forge/build/libs/*.jar
+            !**/*-sources.jar
+          if-no-files-found: error
