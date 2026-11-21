@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+
+[[mods]]
+modId="toastcontrol"
+version="${version}"
+displayName="Toast Control"
+authors="${author}"
+displayURL="YOUR_PROJECT_URL"
+description='''${description}'''
+
+[[dependencies.toastcontrol]]
+    modId="minecraft"
+    type="required"
+    versionRange="[26.1,26.2)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.toastcontrol]]
+    modId="neoforge"
+    type="required"
+    versionRange="[26.1,26.2)"
+    ordering="NONE"
+    side="CLIENT"

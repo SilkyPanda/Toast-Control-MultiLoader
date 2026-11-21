@@ -4,10 +4,17 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://maven.fabricmc.net/'
 		}
+		maven {
+			name = 'NeoForged'
+			url = 'https://maven.neoforged.net/releases'
+		}
 		mavenCentral()
 		gradlePluginPortal()
 	}
 }
 
-// Should match your modid
 rootProject.name = 'toastcontrol'
+
+// The common folder only holds shared sources, it is compiled into each loader below.
+include 'fabric'
+include 'neoforge'

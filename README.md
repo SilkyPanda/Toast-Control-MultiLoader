@@ -1,53 +1,41 @@
-# Toast Control (Fabric)
+# Toast Control
 
-Blocks and customises the popups ("toasts") Minecraft shows for advancements, recipes, tutorials and system
-messages. Client-side only.
+Blocks and customises the toast popups Minecraft shows for advancements, recipes, tutorials and system messages. Client side only.
 
-This is a Fabric port of [Toast Control](https://modrinth.com/mod/CnOG2wlS) by Shadows_of_Fire (MIT licence),
-originally written for NeoForge.
+Supports Fabric (needs Fabric API) and NeoForge on Minecraft 26.1.x.
 
-## Requirements
-
-* Minecraft 26.1.x, Java 25
-* Fabric Loader and Fabric API
+Based on [Toast Control](https://modrinth.com/mod/toast-control) by Shadows-of-Fire.
 
 ## Config
 
-Edit `config/toastcontrol.json` (created on first launch). Changes are picked up within about a second while the
-game is running.
+Fabric: `config/toastcontrol.json`. Changes are picked up while the game is running.
+NeoForge: `config/toastcontrol-client.toml`, or the in-game config screen.
 
-| Section | Option | Default | Meaning |
-|---|---|---|---|
-| `blocked_toasts` | `advancements`, `recipes`, `system` | `false` | Block that toast type |
-| | `tutorial` | `true` | Block tutorial toasts |
-| | `global_vanilla` / `global_modded` / `global` | `false` | Block all vanilla / all non-vanilla / all toasts |
-| | `blocked_classes` | `[]` | Fully qualified toast class names to block |
-| `visual_options` | `force_time` | `0` | Minimum time on screen in ticks (0 = vanilla) |
-| | `translucent` / `transparent` | `true` / `false` | Toast background style (transparent wins) |
-| | `toast_count` | `3` | Toasts shown at once (1-7) |
-| | `x_offset`, `y_offset` | `0` | Pixel offset |
-| | `no_slide` | `false` | Pop in without sliding |
-| | `start_left` | `false` | Show on the left side |
-| | `top_down` | `false` | Stack toasts coming in from the top |
-| `debug` | `print_classes` | `false` | Log the class of every toast shown |
+| Option | Default | |
+|---|---|---|
+| `advancements`, `recipes`, `system` | `false` | Block that type of toast |
+| `tutorial` | `true` | Block tutorial toasts |
+| `global_vanilla`, `global_modded`, `global` | `false` | Block all vanilla, all modded, or all toasts |
+| `blocked_classes` | empty | Toast classes to block, by full class name |
+| `force_time` | `0` | Minimum time a toast stays up, in ticks (0 is vanilla) |
+| `translucent`, `transparent` | `true`, `false` | Toast background (transparent wins) |
+| `toast_count` | `3` | Toasts on screen at once |
+| `x_offset`, `y_offset` | `0` | Offset in pixels |
+| `no_slide`, `start_left`, `top_down` | `false` | Layout and animation |
+| `print_classes` | `false` | Log the class of every toast that is shown |
 
-Press **J** (rebindable under Controls) to clear all active toasts.
+Press J to clear the toasts on screen.
 
-## Testing in a dev client
-
-* Recipe toasts merge into one toast, so use advancements to see several at once:
-  `/advancement grant @s from minecraft:story/root`
-* Reset with `/advancement revoke @s everything`.
-* The `flite` / narrator error on Linux is harmless and unrelated to this mod.
-
-## Development
+## Building
 
 ```
-./gradlew validateAccessWidener   # checks toastcontrol.classtweaker against the game
-./gradlew runClient               # start a dev client
-./gradlew build                   # jar ends up in build/libs
+./gradlew build
 ```
+
+The jars end up in `fabric/build/libs` and `neoforge/build/libs`. `./gradlew :fabric:runClient` and `./gradlew :neoforge:runClient` start a test client.
+
+Shared code is in `common`, which is compiled into both loaders.
 
 ## Licence
 
-MIT, see `LICENSE`. Original work copyright (c) 2019 Brennan Ward.
+MIT, see `LICENSE`.

@@ -3,18 +3,19 @@
 	"id": "toastcontrol",
 	"version": "${version}",
 	"name": "Toast Control",
-	"description": "Blocking annoying popups since 1.12",
+	"description": "Manage (or remove) those pesky toast notifications",
 	"authors": [
-		"Shadows_of_Fire"
+		"SilkyPanda"
 	],
 	"contact": {
-		"homepage": "https://modrinth.com/mod/CnOG2wlS"
+		"homepage": "YOUR_PROJECT_URL",
+		"sources": "https://github.com/SilkyPanda/toast-control-fabric"
 	},
 	"license": "MIT",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"dev.shadowsoffire.toastcontrol.ToastControl"
+			"com.silkypanda.toastcontrol.ToastControlFabric"
 		]
 	},
 	"accessWidener": "toastcontrol.classtweaker",

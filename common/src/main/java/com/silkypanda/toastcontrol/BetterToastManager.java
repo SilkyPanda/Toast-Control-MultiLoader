@@ -1,4 +1,6 @@
-package dev.shadowsoffire.toastcontrol;
+package com.
+
+silkypanda.toastcontrol;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -18,21 +20,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 
-/**
- * Drop-in replacement for vanilla's {@link ToastManager} that adds configurable toast count,
- * alternate positioning (top-down / left side / offset), no-slide mode, and a forced minimum
- * display time.
- */
 public class BetterToastManager extends ToastManager {
 
-    /** Tracks the newest-first order of toasts, used to compute stacking when {@code top_down} is on. */
     private final Deque<BetterToastInstance<?>> topDownList = new ArrayDeque<>();
 
     public BetterToastManager(Minecraft minecraft, Options options) {
         super(minecraft, options);
     }
 
-    /** Applies the blocklist. On NeoForge this was done through ToastAddEvent. */
     @Override
     public void addToast(Toast toast) {
         if (ToastControl.isBlocked(toast)) {
@@ -72,8 +67,8 @@ public class BetterToastManager extends ToastManager {
                 this.visibleToasts.add(inst);
                 this.occupiedSlots.set(idx, idx + count);
 
-                // When stacking from the top, replay the slide on existing toasts so they shift down.
-                if (ToastConfig.INSTANCE.topDown) {
+                // replay the slide so the existing toasts shift down
+                if (ToastConfig.topDown) {
                     this.topDownList.forEach(t -> t.animationStartTime = -1L);
                 }
                 this.topDownList.addFirst(inst);
@@ -122,7 +117,7 @@ public class BetterToastManager extends ToastManager {
     public int findFreeSlotsIndex(int requiredCount) {
         if (this.freeSlotCount() >= requiredCount) {
             int consecutive = 0;
-            int max = ToastConfig.INSTANCE.toastCount;
+            int max = ToastConfig.toastCount;
             for (int i = 0; i < max; i++) {
                 if (this.occupiedSlots.get(i)) {
                     consecutive = 0;
@@ -137,7 +132,7 @@ public class BetterToastManager extends ToastManager {
 
     @Override
     public int freeSlotCount() {
-        return ToastConfig.INSTANCE.toastCount - this.occupiedSlots.cardinality();
+        return ToastConfig.toastCount - this.occupiedSlots.cardinality();
     }
 
     public class BetterToastInstance<T extends Toast> extends ToastManager.ToastInstance<T> {
@@ -166,8 +161,8 @@ public class BetterToastManager extends ToastManager {
             this.getToast().update(BetterToastManager.this, this.fullyVisibleFor);
 
             Toast.Visibility wanted = this.getToast().getWantedVisibility();
-            // Forced display time: refuse to hide until the toast has been shown long enough.
-            if (this.forcedShowTime <= ToastConfig.INSTANCE.forceTime) {
+            // keep the toast up until the forced time has passed
+            if (this.forcedShowTime <= ToastConfig.forceTime) {
                 wanted = Toast.Visibility.SHOW;
             }
 
@@ -193,10 +188,9 @@ public class BetterToastManager extends ToastManager {
             int width = toast.width();
             int height = toast.height();
 
-            // Compute the slide portion per-frame (vanilla only updates visiblePortion once per tick),
-            // mirroring the old getVisibility() so slides stay smooth at high framerates.
+            // vanilla only updates visiblePortion once per tick, so work it out every frame
             float portion;
-            if (ToastConfig.INSTANCE.noSlide) {
+            if (ToastConfig.noSlide) {
                 portion = 1.0F;
             }
             else {
@@ -208,24 +202,23 @@ public class BetterToastManager extends ToastManager {
             Matrix3x2fStack pose = graphics.pose();
             pose.pushMatrix();
 
-            if (ToastConfig.INSTANCE.topDown) {
+            if (ToastConfig.topDown) {
                 int trueIdx = this.topDownIndex();
-                float x = ToastConfig.INSTANCE.startLeft ? 0 : screenWidth - width;
+                float x = ToastConfig.startLeft ? 0 : screenWidth - width;
                 pose.translate(x, (trueIdx - 1) * height + height * portion);
             }
-            else if (ToastConfig.INSTANCE.startLeft) {
+            else if (ToastConfig.startLeft) {
                 pose.translate(-width + width * portion, this.firstSlotIndex * height);
             }
             else {
                 pose.translate(screenWidth - width * portion, this.firstSlotIndex * height);
             }
 
-            pose.translate(ToastConfig.INSTANCE.offsetX, ToastConfig.INSTANCE.offsetY);
+            pose.translate(ToastConfig.offsetX, ToastConfig.offsetY);
             toast.extractRenderState(graphics, BetterToastManager.this.getMinecraft().font, this.fullyVisibleFor);
             pose.popMatrix();
         }
 
-        /** Position of this toast within the newest-first {@link #topDownList}. */
         private int topDownIndex() {
             int trueIdx = 0;
             Iterator<BetterToastInstance<?>> it = BetterToastManager.this.topDownList.iterator();

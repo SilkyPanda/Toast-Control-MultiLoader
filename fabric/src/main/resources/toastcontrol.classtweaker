@@ -1,32 +1,21 @@
 classTweaker v1 official
 
-# ---------------------------------------------------------------------------
-# Minecraft: allow replacing the toast manager with BetterToastManager.
-# ---------------------------------------------------------------------------
 accessible field net/minecraft/client/Minecraft toastManager Lnet/minecraft/client/gui/components/toasts/ToastManager;
-mutable    field net/minecraft/client/Minecraft toastManager Lnet/minecraft/client/gui/components/toasts/ToastManager;
+mutable field net/minecraft/client/Minecraft toastManager Lnet/minecraft/client/gui/components/toasts/ToastManager;
 
-# ---------------------------------------------------------------------------
-# ToastManager: state we read/write, plus two private methods we override.
-# ---------------------------------------------------------------------------
 accessible field net/minecraft/client/gui/components/toasts/ToastManager visibleToasts Ljava/util/List;
 accessible field net/minecraft/client/gui/components/toasts/ToastManager occupiedSlots Ljava/util/BitSet;
 accessible field net/minecraft/client/gui/components/toasts/ToastManager queued Ljava/util/Deque;
 accessible field net/minecraft/client/gui/components/toasts/ToastManager playedToastSounds Ljava/util/Set;
 accessible field net/minecraft/client/gui/components/toasts/ToastManager nowPlayingToast Lnet/minecraft/client/gui/components/toasts/ToastManager$ToastInstance;
-
 accessible method net/minecraft/client/gui/components/toasts/ToastManager findFreeSlotsIndex (I)I
 extendable method net/minecraft/client/gui/components/toasts/ToastManager findFreeSlotsIndex (I)I
 accessible method net/minecraft/client/gui/components/toasts/ToastManager freeSlotCount ()I
 extendable method net/minecraft/client/gui/components/toasts/ToastManager freeSlotCount ()I
 
-# ---------------------------------------------------------------------------
-# ToastManager$ToastInstance: subclassed by BetterToastInstance.
-# ---------------------------------------------------------------------------
 accessible class net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance
 extendable class net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance
 accessible method net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance <init> (Lnet/minecraft/client/gui/components/toasts/ToastManager;Lnet/minecraft/client/gui/components/toasts/Toast;II)V
-
 accessible field net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance firstSlotIndex I
 accessible field net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance occupiedSlotCount I
 accessible field net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance animationStartTime J
@@ -37,10 +26,6 @@ accessible field net/minecraft/client/gui/components/toasts/ToastManager$ToastIn
 accessible field net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance hasFinishedRendering Z
 accessible method net/minecraft/client/gui/components/toasts/ToastManager$ToastInstance calculateVisiblePortion (J)V
 
-# ---------------------------------------------------------------------------
-# Vanilla toast background sprite ids (re-pointed at runtime for the
-# translucent / transparent texture options).
-# ---------------------------------------------------------------------------
 accessible field net/minecraft/client/gui/components/toasts/AdvancementToast BACKGROUND_SPRITE Lnet/minecraft/resources/Identifier;
 accessible field net/minecraft/client/gui/components/toasts/RecipeToast BACKGROUND_SPRITE Lnet/minecraft/resources/Identifier;
 accessible field net/minecraft/client/gui/components/toasts/SystemToast BACKGROUND_SPRITE Lnet/minecraft/resources/Identifier;
