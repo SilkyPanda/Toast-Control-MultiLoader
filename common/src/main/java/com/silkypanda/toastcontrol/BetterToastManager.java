@@ -86,7 +86,7 @@ public class BetterToastManager extends ToastManager {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics) {
-        if (!this.getMinecraft().options.hideGui) {
+        if (!this.getMinecraft().gui.hud.isHidden()) {
             int screenWidth = graphics.guiWidth();
             if (!this.visibleToasts.isEmpty()) {
                 graphics.nextStratum();
@@ -98,7 +98,7 @@ public class BetterToastManager extends ToastManager {
 
             if (this.getMinecraft().options.musicToast().get().renderToast()
                 && this.nowPlayingToast != null
-                && (this.getMinecraft().screen == null || !(this.getMinecraft().screen instanceof PauseScreen))) {
+                && !(this.getMinecraft().gui.screen() instanceof PauseScreen)) {
                 this.nowPlayingToast.extractRenderState(graphics, screenWidth);
             }
         }

@@ -18,7 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public final class ToastControlForge {
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(ToastControl.MODID, "category"));
-    private static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYSYM, InputConstants.KEY_J, CATEGORY);
+    private static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYBOARD, InputConstants.KEY_J, CATEGORY);
 
     public ToastControlForge(FMLJavaModLoadingContext context) {
         BusGroup bus = context.getModBusGroup();
@@ -35,7 +35,7 @@ public final class ToastControlForge {
     private static void clientSetup(FMLClientSetupEvent event) {
         Minecraft.getInstance().execute(() -> {
             Minecraft mc = Minecraft.getInstance();
-            mc.toastManager = new BetterToastManager(mc, mc.options);
+            mc.gui.toastManager = new BetterToastManager(mc, mc.options);
             ToastControl.applyConfig();
         });
     }
@@ -62,7 +62,7 @@ public final class ToastControlForge {
 
     private static void clientTick(TickEvent.ClientTickEvent.Post event) {
         while (CLEAR.consumeClick()) {
-            Minecraft.getInstance().getToastManager().clear();
+            Minecraft.getInstance().gui.toastManager.clear();
         }
     }
 

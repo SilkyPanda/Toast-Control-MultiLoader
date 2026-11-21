@@ -20,16 +20,16 @@ public class ToastControlFabric implements ClientModInitializer {
         config.load();
 
         KeyMapping.Category category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(ToastControl.MODID, "category"));
-        KeyMapping clear = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYSYM, InputConstants.KEY_J, category));
+        KeyMapping clear = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYBOARD, InputConstants.KEY_J, category));
 
         ClientLifecycleEvents.CLIENT_STARTED.register(client -> {
-            client.toastManager = new BetterToastManager(client, client.options);
+            client.gui.toastManager = new BetterToastManager(client, client.options);
             ToastControl.applyConfig();
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (clear.consumeClick()) {
-                client.getToastManager().clear();
+                client.gui.toastManager.clear();
             }
 
             if (++this.ticks % 20 == 0 && config.reloadIfChanged()) {
