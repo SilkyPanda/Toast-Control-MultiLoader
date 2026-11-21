@@ -33,7 +33,7 @@ public class ToastControlNeoForge {
     public void clientSetup(FMLClientSetupEvent e) {
         NeoForgeConfig.sync();
         Minecraft mc = Minecraft.getInstance();
-        mc.toastManager = new BetterToastManager(mc, mc.options);
+        mc.gui.toastManager = new BetterToastManager(mc, mc.options);
         ToastControl.applyConfig();
     }
 
@@ -66,7 +66,7 @@ public class ToastControlNeoForge {
         @SubscribeEvent
         public static void keys(InputEvent.Key e) {
             if (CLEAR.isDown()) {
-                Minecraft.getInstance().getToastManager().clear();
+                Minecraft.getInstance().gui.toastManager.clear();
             }
         }
 
