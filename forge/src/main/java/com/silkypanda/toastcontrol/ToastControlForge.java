@@ -18,7 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public final class ToastControlForge {
 
     private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(ToastControl.MODID, "category"));
-    private static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYSYM, InputConstants.KEY_J, CATEGORY);
+    private static final KeyMapping CLEAR = new KeyMapping("key.toastcontrol.clear", InputConstants.Type.KEYBOARD, InputConstants.KEY_J, CATEGORY);
 
     public ToastControlForge(FMLJavaModLoadingContext context) {
         BusGroup bus = context.getModBusGroup();
