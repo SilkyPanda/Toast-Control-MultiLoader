@@ -10,7 +10,6 @@ subprojects {
 		withSourcesJar()
 	}
 
-	// Shared code and assets
 	sourceSets.main {
 		java.srcDir rootProject.file('common/src/main/java')
 		resources.srcDir rootProject.file('common/src/main/resources')

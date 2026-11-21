@@ -65,7 +65,6 @@ public class BetterToastManager extends ToastManager {
                 this.visibleToasts.add(inst);
                 this.occupiedSlots.set(idx, idx + count);
 
-                // replay the slide so the existing toasts shift down
                 if (ToastConfig.topDown) {
                     this.topDownList.forEach(t -> t.animationStartTime = -1L);
                 }
@@ -159,7 +158,6 @@ public class BetterToastManager extends ToastManager {
             this.getToast().update(BetterToastManager.this, this.fullyVisibleFor);
 
             Toast.Visibility wanted = this.getToast().getWantedVisibility();
-            // keep the toast up until the forced time has passed
             if (this.forcedShowTime <= ToastConfig.forceTime) {
                 wanted = Toast.Visibility.SHOW;
             }
@@ -186,7 +184,6 @@ public class BetterToastManager extends ToastManager {
             int width = toast.width();
             int height = toast.height();
 
-            // vanilla only updates visiblePortion once per tick, so work it out every frame
             float portion;
             if (ToastConfig.noSlide) {
                 portion = 1.0F;

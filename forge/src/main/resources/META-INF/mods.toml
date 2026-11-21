@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[62,65)"
+license="MIT"
+clientSideOnly=true
+accessTransformers=["META-INF/accesstransformer.cfg"]
+
+[[mods]]
+modId="toastcontrol"
+version="${version}"
+displayName="Toast Control"
+authors="${author}"
+displayURL="YOUR_PROJECT_URL"
+description='''${description}'''
+
+[[dependencies.toastcontrol]]
+    modId="forge"
+    mandatory=true
+    versionRange="[62,65)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.toastcontrol]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[26.1,26.2)"
+    ordering="NONE"
+    side="CLIENT"

@@ -2,29 +2,27 @@
 
 Blocks and customises the toast popups Minecraft shows for advancements, recipes, tutorials and system messages. Client side only.
 
-Supports Fabric (needs Fabric API) and NeoForge on Minecraft 26.1.x.
+Works on Minecraft 26.1.x with Fabric (needs Fabric API), NeoForge and Forge.
 
 Based on [Toast Control](https://modrinth.com/mod/toast-control) by Shadows-of-Fire.
 
 ## Config
 
-Fabric: `config/toastcontrol.json`. Changes are picked up while the game is running.
-NeoForge: `config/toastcontrol-client.toml`, or the in-game config screen.
+Fabric uses `config/toastcontrol.json` and picks up changes while the game is running. NeoForge and Forge use `config/toastcontrol-client.toml`, which can also be edited from the in-game config screen.
 
-| Option | Default | |
-|---|---|---|
-| `advancements`, `recipes`, `system` | `false` | Block that type of toast |
-| `tutorial` | `true` | Block tutorial toasts |
-| `global_vanilla`, `global_modded`, `global` | `false` | Block all vanilla, all modded, or all toasts |
-| `blocked_classes` | empty | Toast classes to block, by full class name |
-| `force_time` | `0` | Minimum time a toast stays up, in ticks (0 is vanilla) |
-| `translucent`, `transparent` | `true`, `false` | Toast background (transparent wins) |
-| `toast_count` | `3` | Toasts on screen at once |
-| `x_offset`, `y_offset` | `0` | Offset in pixels |
-| `no_slide`, `start_left`, `top_down` | `false` | Layout and animation |
-| `print_classes` | `false` | Log the class of every toast that is shown |
+Options, with defaults:
 
-Press J to clear the toasts on screen.
+- `advancements`, `recipes`, `system` (false) and `tutorial` (true): block that kind of toast
+- `global_vanilla`, `global_modded`, `global` (false): block every vanilla toast, every modded toast, or all of them
+- `blocked_classes` (empty): full class names of toasts to block
+- `force_time` (0): minimum time a toast stays up in ticks, 0 keeps the vanilla time
+- `translucent` (true) and `transparent` (false): toast background, transparent wins
+- `toast_count` (3): how many toasts show at once
+- `x_offset`, `y_offset` (0): offset in pixels
+- `no_slide`, `start_left`, `top_down` (false): animation and position
+- `print_classes` (false): log the class of every toast that is shown
+
+J clears the toasts on screen.
 
 ## Building
 
@@ -32,9 +30,9 @@ Press J to clear the toasts on screen.
 ./gradlew build
 ```
 
-The jars end up in `fabric/build/libs` and `neoforge/build/libs`. `./gradlew :fabric:runClient` and `./gradlew :neoforge:runClient` start a test client.
+The jars end up in `fabric/build/libs`, `neoforge/build/libs` and `forge/build/libs`. `./gradlew :fabric:runClient`, `:neoforge:runClient` and `:forge:runClient` start a test client.
 
-Shared code is in `common`, which is compiled into both loaders.
+Code in `common` is compiled into all three.
 
 ## Licence
 

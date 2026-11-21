@@ -8,6 +8,10 @@ pluginManagement {
 			name = 'NeoForged'
 			url = 'https://maven.neoforged.net/releases'
 		}
+		maven {
+			name = 'MinecraftForge'
+			url = 'https://maven.minecraftforge.net/'
+		}
 		mavenCentral()
 		gradlePluginPortal()
 	}
@@ -15,6 +19,6 @@ pluginManagement {
 
 rootProject.name = 'toastcontrol'
 
-// The common folder only holds shared sources, it is compiled into each loader below.
 include 'fabric'
 include 'neoforge'
+include 'forge'

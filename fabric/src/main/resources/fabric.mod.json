@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "YOUR_PROJECT_URL",
-		"sources": "https://github.com/SilkyPanda/toast-control-fabric"
+		"sources": "https://github.com/SilkyPanda/Toast-Control-MultiLoader"
 	},
 	"license": "MIT",
 	"environment": "client",

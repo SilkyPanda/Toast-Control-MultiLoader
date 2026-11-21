@@ -18,3 +18,4 @@ jobs:
           path: |
             fabric/build/libs/
             neoforge/build/libs/
+            forge/build/libs/

@@ -1,0 +1,44 @@
+plugins {
+	id 'net.minecraftforge.gradle' version '[7.0.17,8.0)'
+}
+
+base {
+	archivesName = 'ToastControl-Forge'
+}
+
+minecraft {
+	accessTransformer = true
+
+	runs {
+		configureEach {
+			workingDir.convention layout.projectDirectory.dir('run')
+			systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
+		}
+
+		register('client')
+	}
+}
+
+repositories {
+	minecraft.mavenizer(it)
+	maven fg.forgeMaven
+	maven fg.minecraftLibsMaven
+	mavenCentral()
+}
+
+dependencies {
+	implementation minecraft.dependency("net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}")
+	annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
+}
+
+processResources {
+	inputs.property 'version', project.version
+	inputs.property 'author', project.mod_author
+	inputs.property 'description', project.mod_description
+
+	filesMatching('META-INF/mods.toml') {
+		expand 'version': project.version,
+			'author': project.mod_author,
+			'description': project.mod_description
+	}
+}
