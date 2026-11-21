@@ -1,6 +1,4 @@
-package com.
-
-silkypanda.toastcontrol;
+package com.silkypanda.toastcontrol;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
